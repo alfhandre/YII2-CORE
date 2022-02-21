@@ -1,0 +1,32 @@
+Kelompok Yii2 Core: 
+- Andre Lutfiansyah (211511005) 
+- Arief Rahman Ahmadhusein (211511009) 
+- Fathan Falatansya (211511014) 
+- Muhammad Fadhil Maulana (211511024) 
+- Nadya Frisca Regina Fasya (211511027) 
+- Salma Aushaf Hafianne (211511030) 
+
+1. Fitur  
+Fitur yang akan ada pada prototipe text editor kami diantaranya: 
+  a. Copy paste 
+    Copy paste digunakan untuk menyalin teks agar lebih mempercepat aktifitas tanpa harus  mengulang pengetikan kata atau kalimat yang sama berulang kali 
+  b. Save file 
+    Save file digunakan untuk menyimpan teks yang telah diinputkan sehingga teks tersebut  tidak akan hilang 
+  c. Open file 
+    Open file digunakan untuk membuka teks yang sudah tersimpan sebelumnya
+  d. Pilihan menu yang mencakup: 
+    • Teks editor 
+      Teks editor adalah suatu software yang memungkinkan membuka, melihat,mengedit suatu text dalam suatu software 
+    • Panduan penggunaan 
+      Panduan penggunaan berisi tata cara yang dimaksudkan untuk membantu pengguna dalam memahami cara menggunakan teks editor dan fitur-fitur yang  tersedia dalam teks editor tersebut 
+    • Format 
+      Digunakan untuk mengganti format seperti font dan latar belakang  
+
+2. Pembagian tugas 
+  a. Copy paste ==> Dikerjakan oleh Andre Lutfiansyah 
+  b. Save file  ==> Dikerjakan oleh Arief Rahman Ahmadhusein 
+  c. Open file  ==> Dikerjakan oleh Fathan Falatansya 
+  d. Pilihan menu:
+    • Text editor       ==> Dikerjakan oleh Muhammad Fadhil Maulana 
+    • Panduan pengguna  ==> Dikerjakan oleh Nadya Frisca Regina Fasya 
+    • Format            ==> Dikerjakan oleh Salma Aushaf Hafianne
