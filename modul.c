@@ -96,3 +96,6 @@ void format (int i){
 	SetConsoleTextAttribute (j,i);
 }
 
+
+
+
