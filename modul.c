@@ -5,6 +5,7 @@
 #include <unistd.h>
 
 void tampilan(){
+	format (9);
 	printf("==========================================\n");
 	printf("       text editor Yii2 Core (BETA)       \n");
 	printf("==========================================\n");
@@ -12,6 +13,7 @@ void tampilan(){
 }
 
 void panduan(){
+	format (6);
 	printf("==========================================\n");
 	printf("       			PANDUAN				      \n");
 	printf("==========================================\n");
@@ -27,6 +29,7 @@ void bukafile(){
 	char namafile[30];
 	
 	//nama file yang akan di buka  
+	format (3);
 	printf("=============================================================\n");
 	printf(" Nama File yang akan di buka (MAKS 30 KARAKTER):");
 	gets(namafile);
@@ -52,6 +55,7 @@ void buatfile(){
 	char text[100];
 	
 	//nama file yang akan di buat  
+	format(9);
 	printf("==============================\n");
 	printf("Nama File yang akan dibuat (MAKS 30 KARAKTER):");
 	gets(namafile);
@@ -73,5 +77,8 @@ void buatfile(){
 	fclose(fptr);
 }
 
-
+void format (int i){
+	HANDLE j = GetStdHandle (STD_OUTPUT_HANDLE);
+	SetConsoleTextAttribute (j,i);
+}
 
