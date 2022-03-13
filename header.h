@@ -14,6 +14,7 @@ void tampilan();
 void panduan();
 void bukafile();
 void buatfile();
+void format();
 
 #endif
 
