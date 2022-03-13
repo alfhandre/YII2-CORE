@@ -15,6 +15,8 @@ void panduan();
 void bukafile();
 void buatfile();
 void format();
+void duplicateFile();
+void renameFile();
 
 #endif
 
