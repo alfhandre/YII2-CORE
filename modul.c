@@ -31,7 +31,7 @@ void bukafile(){
 	//nama file yang akan di buka  
 	format (3);
 	printf("=============================================================\n");
-	printf(" Nama File yang akan di buka (MAKS 30 KARAKTER):");
+	printf(" Nama File yang akan di buka :");
 	gets(namafile);
 	system("cls");
 	
@@ -52,29 +52,43 @@ void buatfile(){
 	char buff[255];
 	FILE *fptr;
 	char namafile[30];
-	char text[100];
+	char c;
 	
 	//nama file yang akan di buat  
-	format(9);
-	printf("==============================\n");
-	printf("Nama File yang akan dibuat (MAKS 30 KARAKTER):");
+	
+	printf("\nNama File yang akan dibuat :");
 	gets(namafile);
 	system("cls");
+	tampilan();
 	
 	//operasi file 
 		fptr = fopen(namafile,"w+"); 
-		int i;
-		for(i = 0; i < 5; i++){
-
+		
         // mengambil input dari user
-        
-        fgets(text, sizeof(text), stdin);
-
-        // menulis ke text ke file
-        fputs(text, fptr);
-    }
+		while(1)
+		{
+		c=getchar();
+		
+       		 if(c==32)
+		{ 
+		c =' ';
+		fputc(c, fptr);
+		} 
+		else if(c == 19)
+		{
+			system("cls");
+			tampilan();
+			printf("\n\tFile Berhasil Di Save");
+			printf("\n\n\tTekan Enter untuk keluar");
+			fclose(fptr);
+			break;
+		}
+		else{
+		fputc(c, fptr);
+		}
 	
-	fclose(fptr);
+	}
+    
 }
 
 void format (int i){
