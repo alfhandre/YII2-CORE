@@ -9,10 +9,12 @@ int main(void){
 		
 		tampilan();
 		menu = 0;
+		format (11);
 		printf("1. Membuat Text   \n");
 		printf("2. Buka File      \n");
 		printf("3. Panduan        \n");
 		printf("4. keluar         \n");
+		format (10);
 		printf("\nPilih Menu :");
 		scanf("%d",&menu);fflush(stdin);
 		
