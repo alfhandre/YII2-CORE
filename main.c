@@ -1,24 +1,21 @@
 #include <stdio.h>
-#include <windows.h>
+#include <stdlib.h>
 #include "header.h"
 
-int main(){
-	
-int menu;
+int main(void){
+	int menu;
 
 	while(1){
 		
+		tampilan();
 		menu = 0;
-		printf("==========================================\n");
-		printf("       Text Editor Yii2 Core (BETA)       \n");
-		printf("==========================================\n");
+		format (11);
 		printf("1. Membuat Text   \n");
 		printf("2. Buka File      \n");
 		printf("3. Panduan        \n");
-		printf("4. Duplikasi File \n");
-		printf("5. Ganti Nama File\n");
-		printf("6. keluar         \n");
-		printf("\nPilih Menu : ");
+		printf("4. keluar         \n");
+		format (10);
+		printf("\nPilih Menu :");
 		scanf("%d",&menu);fflush(stdin);
 		
 		switch(menu){
@@ -26,7 +23,6 @@ int menu;
 			{
 				system("cls");
 				buatfile();
-//				textEditor();
 				getch();
 				system("cls");
 				break;
@@ -39,6 +35,7 @@ int menu;
 				system("cls");
 				break;
 			}
+			
 			case 3 :
 			{
 				system("cls");
