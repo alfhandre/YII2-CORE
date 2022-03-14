@@ -39,7 +39,7 @@ void panduan(){
 	printf("==========================================\n");
 	printf("1. Ketik 1 untuk membuat file baru\n");
 	printf("2. ketik 2 untuk masuk ke dalam menu open file\n");
-	printf("\t membuka file cukup ketikkan nama file yang ingin dibuka\n\n);
+	printf("\t membuka file cukup ketikkan nama file yang ingin dibuka\n\n");
 	printf("==========================================\n");
 	printf("       			FITUR				      \n");
 	printf("==========================================\n");
