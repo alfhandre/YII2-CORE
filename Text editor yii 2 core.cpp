@@ -34,13 +34,21 @@ void tampilan(){
 }
 
 void panduan(){
-	printf("==========================================\n");
-	printf("       			PANDUAN				      \n");
-	printf("==========================================\n");
-	printf("1. Pilih menu 1 untuk memulai text editor\n");
-	printf("2. Untuk keluar tekan enter 3 kali");
-	printf("\n\n\nTekan Enter Untuk Kembali Ke Menu\n");
-	printf("==========================================\n");
+	printf("\t=================================================================\n");
+	printf("\t|\t\t\t     PANDUAN\t\t\t\t|\n");
+	printf("\t=================================================================\n");
+	printf("\t|1. Ketik 1 untuk membuat file baru\t\t\t\t|\n");
+	printf("\t|2. ketik 2 untuk masuk ke dalam menu open file\t\t\t|\n");
+	printf("\t|   (membuka file, cukup ketikkan nama file yang ingin dibuka)\t|\n");
+	printf("\t=================================================================\n\n");
+	printf("\t=================================================================\n");
+	printf("\t|\t\t\t      FITUR\t\t\t\t|\n");
+	printf("\t=================================================================\n");
+	printf("\t|Copy : Menyalin teks yang dipilih, gunakan ctrl+c\t\t|\n");
+	printf("\t|Paste : Menempelkan teks, gunakan ctrl+v\t\t\t|\n");
+	printf("\t|Save file : menyimpan perubahan pada file, gunakan ctrl+s\t|\n");
+	printf("\t=================================================================\n");
+	printf("\n\n\tTekan Enter Untuk Kembali Ke Menu\n");
 }
 
 

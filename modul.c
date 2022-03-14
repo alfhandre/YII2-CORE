@@ -96,6 +96,7 @@ void format (int i){
 	SetConsoleTextAttribute (j,i);
 }
 
+//<<<<<<< Fadhil-patch-1
 void duplicateFile()
 {
 	char ch, source_file[20], target_file[20];
@@ -162,3 +163,8 @@ void renameFile()
 		printf("Tidak dapat mengganti Nama File. Silakan periksa file yang ada dan Anda memiliki izin untuk memodifikasi File.\n");
     }
 }
+=======
+
+
+
+//>>>>>>> main
