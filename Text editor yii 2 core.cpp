@@ -37,8 +37,15 @@ void panduan(){
 	printf("==========================================\n");
 	printf("       			PANDUAN				      \n");
 	printf("==========================================\n");
-	printf("1. Pilih menu 1 untuk memulai text editor\n");
-	printf("2. Untuk keluar tekan enter 3 kali");
+	printf("1. Ketik 1 untuk membuat file baru\n");
+	printf("2. ketik 2 untuk masuk ke dalam menu open file\n");
+	printf("\t membuka file cukup ketikkan nama file yang ingin dibuka\n\n);
+	printf("==========================================\n");
+	printf("       			FITUR				      \n");
+	printf("==========================================\n");
+	printf(" Copy : Untuk menyalin teks yang dipilih ke clipboard gunakan perintah ctrl+c \n");
+	printf(" Paste : Untuk mempaste teks. gunakan perintah ctrl+v \n");
+	printf(" Save file : untuk menyimpan perubahan yang telah dibuat pada file, gunakan perintah ctrl+s \n");
 	printf("\n\n\nTekan Enter Untuk Kembali Ke Menu\n");
 	printf("==========================================\n");
 }
