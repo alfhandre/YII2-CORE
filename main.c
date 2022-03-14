@@ -46,6 +46,22 @@ int main(void){
 			}
 			case 4 :
 			{
+				system("cls");
+				duplicateFile();
+				getch();
+				system("cls");
+				break;
+			}
+			case 5 :
+			{
+				system("cls");
+				renameFile();
+				getch();
+				system("cls");
+				break;
+			}
+			case 6 :
+			{
 				return(0); 
 				break;
 			}
