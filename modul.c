@@ -215,4 +215,4 @@ void jum_kata()
     fclose(fp);
        
 	printf("Jumlah kata file tersebut sebanyak: %d Kata\n\n", jml_kata);	
-}
+
