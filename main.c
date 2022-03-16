@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "header.h"
-#include "modul.c"
+
 
 int main(void){
 	int menu;
