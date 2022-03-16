@@ -13,7 +13,12 @@ int main(void){
 		printf("1. Membuat Text   \n");
 		printf("2. Buka File      \n");
 		printf("3. Panduan        \n");
-		printf("4. keluar         \n");
+		printf("4. duplicate file \n");
+		printf("5. rename file    \n");
+		printf("6. Hitung char    \n");
+		printf("7. Hitung kata    \n");
+		printf("8. Keluar	      \n");
+		
 		format (10);
 		printf("\nPilih Menu :");
 		scanf("%d",&menu);fflush(stdin);
@@ -61,6 +66,22 @@ int main(void){
 				break;
 			}
 			case 6 :
+			{
+				system("cls");
+				jum_char();
+;				getch();
+				system("cls");
+				break;
+			}
+			case 7 :
+			{
+				system("cls");
+				jum_kata();
+;				getch();
+				system("cls");
+				break;
+			}
+			case 8 :
 			{
 				return(0); 
 				break;
