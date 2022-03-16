@@ -17,7 +17,7 @@ void buatfile();
 void format();
 void duplicateFile();
 void renameFile();
+void jum_kata();
+void jum_char();
 
 #endif
-
-
