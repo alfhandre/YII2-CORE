@@ -1,0 +1,23 @@
+
+contohhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh
+
+
+
+void welcome_screen(){
+	gotoxy(17,28); printf(" Created By : YII2 CORE \n");
+	judul();
+	loading();
+}
+
+void loading(){ 
+	int x = 28, y = 13, n;
+	warnateks(WHITE);
+	gotoxy(x,20); printf("       Please Wait");
+	gotoxy(x,21);  printf("ÉÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ»");
+	gotoxy(x,22);printf("º                        º");
+	gotoxy(x,23);printf("ÈÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ¼");
+	for(n=29;n<=50;n++){
+		gotoxy(n,22);printf("Û");
+		kecepatan(0.1);
+	};
+}
