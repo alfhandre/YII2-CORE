@@ -10,6 +10,11 @@ untuk keluar dari program cukup menekan tombol enter sebanyak dua kali
 Fitur Fitur :
 Copy : Untuk menyalin teks yang dipilih ke clipboard gunakan perintah ctrl+c
 Paste : Untuk mempaste teks. gunakan perintah ctrl+v
-Save file : 
-untuk menyimpan perubahan yang telah dibuat pada file, gunakan perintah ...
+Save file : untuk menyimpan perubahan yang telah dibuat pada file, gunakan perintah 
+Find and Replace :  untuk mencari dan mengganti kata
+Duplicate file : untuk menduplikasi sebuah file 
+Rename file : Mengganti nama file
+Format :
+Menghitung jumlah char dan kata : 
+
 
