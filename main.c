@@ -6,15 +6,15 @@ int main(void){
 	int menu;
 
 	while(1){
-		
-		tampilan();
+  		system("cls");
 		menu = 0;
-		format (11);
 		printf("1. Membuat Text   \n");
-		printf("2. Buka File      \n");
-		printf("3. Panduan        \n");
-		printf("4. keluar         \n");
-		format (10);
+		printf("2. tampil         \n");
+		printf("3. save         \n");
+		printf("4. buka        \n");
+		printf("5. Hapus File  \n");
+		printf("6. Keluar  \n");
+	
 		printf("\nPilih Menu :");
 		scanf("%d",&menu);fflush(stdin);
 		
@@ -22,40 +22,64 @@ int main(void){
 			case 1 :
 			{
 				system("cls");
-				buatfile();
-				getch();
-				system("cls");
+				input();
+//				pilihan();
 				break;
 			}
-				case 2 :
+		
+			case 2 :
 			{
 				system("cls");
-				bukafile();
+				tampil();
 				getch();
+				break;
+			}
+				case 3 :
+			{
 				system("cls");
+				savefile();
+				getch();
+				break;
+			}
+				case 4 :
+			{
+				char namafile[30];
+				system("cls");
+				printf("==============================\n");
+				printf("Nama File yang akan dibuat (MAKS 30 KARAKTER):");
+				gets(namafile);
+				system("cls");
+				bukafile(namafile);
+				getch();
 				break;
 			}
 			
-			case 3 :
+				case 5 :
 			{
+				char namafile[30];
 				system("cls");
-				panduan();
+				printf("==============================\n");
+				printf("Nama File yang akan dihapus (MAKS 30 KARAKTER):");
+				gets(namafile);
+				system("cls");
+				deletefile(namafile);
 				getch();
-				system("cls");
 				break;
 			}
-			case 4 :
+			
+				case 6 :
 			{
-				return(0); 
+				return 0;
 				break;
 			}
+			
 				default:
 			{
 				system("cls");
 				printf("\t=======================\n");
 				printf("\t     Menu tidak ada    \n");
 				printf("\t=======================\n");
-				sleep(2);
+				
 				system("cls");
 			
 				break;
