@@ -8,13 +8,16 @@
 #define LEN 80
 
 
+char huruf[100][100];    // variabel global
+int i=0,j=0; 			// deklarasi variabel global 
+int hasil = 0;   
+void pilihan(); 
+int input(void);
+void tampil();
+void savefile();
+void bukafile(char namafile[30]);
+void deletefile(char namafile[30]);
 
-void texteditor();
-void tampilan();
-void panduan();
-void bukafile();
-void buatfile();
-void format();
 
 #endif
 
