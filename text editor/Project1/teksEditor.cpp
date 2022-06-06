@@ -2,10 +2,10 @@
 #include <stdlib.h>
 #include "teksEditor.H"
 
-address Alokasi (infotype X)
+address Alocation (infotype X)
 {
 	address P;
-	P = (address)malloc(sizeof(ElmtList));
+	P = (address)malloc(sizeof(node));
 	if(P != Nil){
 		Info(P) = X;
 		Next(P) = Nil;
@@ -16,7 +16,7 @@ address Alokasi (infotype X)
 	return P;
 }
 
-void DeAlokasi (address *P)
+void deAloc (address *P)
 {
 	Next(*P) = Nil;
 	Prev(*P) = Nil;
@@ -25,17 +25,17 @@ void DeAlokasi (address *P)
 	free(*P);
 }
 
-bool IsEmpty (teks L)
+bool IsEmpty (text L)
 {
 	return (First(L)==Nil);	
 }
 
-void CreateTeks (teks * L)
+void createText (text * L)
 {
 	First(*L) = Nil;
 }
 
-void InsertFirstRow (teks * L, address P)
+void InsNewRow (text * L, address P)
 {
 	if(First(*L) == Nil)
 		First(*L) = P;
@@ -47,12 +47,12 @@ void InsertFirstRow (teks * L, address P)
 	}
 }
 
-void InsertNewLine(teks * L, int CurLine, int CurCol)
+void InsNewLine(text * L, int CurLine, int CurCol)
 {
 	address above, below, rec_up, rec_down, rec_pos, move;
 	
 	address pos = First(*L);
-	address P = Alokasi('\0');
+	address P = Alocation('\0');
 	
 	above = Nil;
 	below = Nil;
@@ -106,13 +106,13 @@ void InsertNewLine(teks * L, int CurLine, int CurCol)
 		}
 		else //kondisi berada di tengah atau akhir
 		{
-			if(Next(pos) != Nil) //kondisi di tengah (error)
+			if(Next(pos) != Nil) //kondisi di tengah 
 			{	
 				pos = Next(pos);
 				above = Up(pos);
 				below = Down(pos);
 				move = pos;
-				
+				 
 				while(above != Nil)
 				{
 					Down(above) = Nil;
@@ -169,7 +169,7 @@ void InsertNewLine(teks * L, int CurLine, int CurCol)
 						move = Next(move);
 					}
 				}
-				DeAlokasi(&P);
+				deAloc(&P);
 			}
 			else
 			{
@@ -205,7 +205,7 @@ void InsertNewLine(teks * L, int CurLine, int CurCol)
 	}
 }
 
-void InsertChar (teks * L, address New, int CurCol, int CurLine)
+void InsChar (text *L, address New, int CurCol, int CurLine)
 {
 	address pos;
 	address move;
@@ -216,7 +216,7 @@ void InsertChar (teks * L, address New, int CurCol, int CurLine)
 	move = New;
 	
 	if(pos == Nil)
-		InsertFirstRow(&(*L), New);
+		InsNewRow(&(*L), New);
 	else
 	{
 		for(int i=1; i<CurLine;i++)
@@ -232,7 +232,7 @@ void InsertChar (teks * L, address New, int CurCol, int CurLine)
 		if(Info(pos) == '\0') //kondisi ketika insert new line
 		{
 			Info(pos) = Info(New);
-			DeAlokasi(&New);
+			deAloc(&New);
 		}
 		
 		else if(Next(pos) == Nil && CurCol != 1) //ketika posisi berada di akhir
@@ -309,7 +309,7 @@ void InsertChar (teks * L, address New, int CurCol, int CurLine)
 				}
 			}
 		}		
-		else // karakter di insert di awal ketika berada di kolom 1 // masih error
+		else // karakter di insert di awal ketika berada di kolom 1 // 
 		{
 			Next(New) = pos;
 			Prev(pos) = New;
@@ -350,16 +350,16 @@ void InsertChar (teks * L, address New, int CurCol, int CurLine)
 	}
 }
 
-void InsVChar (teks * L, infotype X, int CurCol, int CurLine)
+void InsVChar (text * L, infotype X, int CurCol, int CurLine)
 {
-	address P = Alokasi(X);
+	address P = Alocation(X);
 	if(P != Nil)
 	{
-		InsertChar(&(*L), P, CurCol, CurLine);
+		InsChar(&(*L), P, CurCol, CurLine);
 	}
 }
 
-void DelChar(teks * L, int CurCol, int CurLine)
+void DelChar(text * L, int CurCol, int CurLine)
 {
 	address pos = First(*L);
 	address below, above, move, rec_up, rec_down, rec_pos;
@@ -433,7 +433,7 @@ void DelChar(teks * L, int CurCol, int CurLine)
 					below = Next(below);
 				}
 			}
-			DeAlokasi(&pos);
+			deAloc(&pos);
 		}
 	}
 	else if(CurCol != 1) // deletion berada di tengah atau akhir
@@ -450,7 +450,7 @@ void DelChar(teks * L, int CurCol, int CurLine)
 			
 			Next(Prev(pos)) = Nil;
 			
-			DeAlokasi(&pos); 
+			deAloc(&pos); 
 		}
 		
 		else if(Next(pos) != Nil) //node yang dihapus diantara
@@ -504,65 +504,61 @@ void DelChar(teks * L, int CurCol, int CurLine)
 					move = Next(move);
 				}	
 			}
-		DeAlokasi(&pos);
+		deAloc(&pos);
 		}
 	}
 }
 
-void editorKeyProses()
+void textProses()
 {
-	teks teksEditor;
-	CreateTeks(&teksEditor);
+	text teksEditor;
+	createText(&teksEditor);
 	
-	int CurrentLine = 1;
-	int CurrentCollumns = 1;
+	int CurLine = 1;
+	int CurColl = 1;
 	int temp_int;
-	address Position;
 	
 	char temp;
 	int key;
 	
-	refreshScreen(teksEditor, CurrentLine, CurrentCollumns);
-	
 	while(1)
 	{
-		refreshScreen(teksEditor, CurrentLine, CurrentCollumns);
-		SetCP(CurrentCollumns-1, CurrentLine+1);
+		ScrRef(teksEditor, CurLine, CurColl);
+		gotoxy(CurColl-1, CurLine+1);
 		temp=getch();
 		key = temp;
 		
 		if(key == -32) // cursor interact
 		{
 			key=getch();
-				switch(key)
-				{
-					case 72:
-						{//up
-							//program untuk memindahkan posisi cursor kearah atas
-							CurrentLine--;
-							if(CurrentLine == 0)
-								CurrentLine = 1;
+			switch(key){
+				case 72:{
+					//up
+					//program untuk memindahkan posisi cursor kearah atas
+							CurLine--;
+							if(CurLine == 0)
+								CurLine = 1;
 							else{
-								temp_int = getLength(teksEditor, CurrentLine)+1;
-								if(CurrentCollumns > temp_int)
-									CurrentCollumns = temp_int;
+								temp_int = infoLenght(teksEditor, CurLine)+1;
+								if(CurColl > temp_int)
+									CurColl = temp_int;
 								
 							}
-							break;
+							break; 
 						}
 					case 75:
 						{//left
 							//program untuk memindahkan posisi cursor kearah kiri
-							CurrentCollumns--;
-							if(CurrentCollumns == 0)
+							CurColl--;
+							if(CurColl == 0)
 							{
-								if(CurrentLine-1 != 0) //kondisi ketika bukan berada di baris 1
+								if(CurLine-1 != 0) //kondisi ketika bukan berada di baris 1
 								{
-									CurrentLine--;
-									CurrentCollumns = getLength(teksEditor, CurrentLine)+1;
+									CurLine--;
+									CurColl = infoLenght(teksEditor, CurLine)+1;
 								}else //kondisi ketika berada di baris 1
 								{
-									CurrentCollumns = 1;
+									CurColl = 1;
 								}
 							}
 							break;
@@ -570,32 +566,32 @@ void editorKeyProses()
 					case 77:
 						{//right
 							//program untuk memindahkan posisi cursor kearah kanan
-							CurrentCollumns++;
-							temp_int = getLength(teksEditor, CurrentLine)+1;
-							if(CurrentCollumns > getLength(teksEditor, CurrentLine)+1)
+							CurColl++;
+							temp_int = infoLenght(teksEditor, CurLine)+1;
+							if(CurColl > infoLenght(teksEditor, CurLine)+1)
 							{
-								CurrentLine++;
-								if(CurrentLine > getMaxRow(teksEditor))
+								CurLine++;
+								if(CurLine > infoRow(teksEditor))
 								{
-									CurrentLine--;
-									CurrentCollumns = getLength(teksEditor, CurrentLine)+1;
+									CurLine--;
+									CurColl = infoLenght(teksEditor, CurLine)+1;
 								}
 								else
-									CurrentCollumns = 1;
+									CurColl = 1;
 							}
 							break;
 						}
 					case 80:
 						{//down
 							//program untuk memindahkan posisi cursor kearah bawah
-							if(CurrentLine+1 > getMaxRow(teksEditor))
-								CurrentCollumns = getLength(teksEditor, CurrentLine)+1;
+							if(CurLine+1 > infoRow(teksEditor))
+								CurColl = infoLenght(teksEditor, CurLine)+1;
 							else
 							{
-								CurrentLine++;
-								temp_int = getLength(teksEditor, CurrentLine);
-								if(CurrentCollumns > temp_int)
-									CurrentCollumns = temp_int+1;
+								CurLine++;
+								temp_int = infoLenght(teksEditor, CurLine);
+								if(CurColl > temp_int)
+									CurColl = temp_int+1;
 							}
 						}
 				}
@@ -606,27 +602,27 @@ void editorKeyProses()
 			/*Handle Backspace*/
 			if(key == 8)
 			{
-				DelChar(&teksEditor, CurrentCollumns, CurrentLine);
-				CurrentCollumns--;
-				if(CurrentCollumns == 0)
+				DelChar(&teksEditor, CurColl, CurLine);
+				CurColl--;
+				if(CurColl == 0)
 				{
-					CurrentLine--;
-					if(CurrentLine == 0)
+					CurLine--;
+					if(CurLine == 0)
 					{
-						CurrentLine = 1;
-						CurrentCollumns = 1;
+						CurLine = 1;
+						CurColl = 1;
 					}else
 					{
-							CurrentCollumns = getLength(teksEditor, CurrentLine)+1;
+						CurColl = infoLenght(teksEditor, CurLine)+1;
 					}
 				}
 			}
 			/***Handle Enter***/                     
 			else if(key == 13)
 			{
-				InsertNewLine(&teksEditor, CurrentLine, CurrentCollumns);
-				CurrentLine++;
-				CurrentCollumns = 1;
+				InsNewLine(&teksEditor, CurLine, CurColl);
+				CurLine++;
+				CurColl = 1;
 			}
 			/*** Shortcut key ***/
 			/*Ctrl + S (untuk save file)*/
@@ -642,7 +638,7 @@ void editorKeyProses()
 					getch();
 				}
 				else{
-					editorSaveFile(fname, teksEditor);
+					saveFile(fname, teksEditor);
 					printf("\n tekan apapun untuk kembali");
 				}
 				
@@ -667,14 +663,7 @@ void editorKeyProses()
 			// CTRL +A
 			else if (key == 1){
 				system("cls");
-				printf("====================================================\n");
-				printf("=============            HELP           ============\n");
-				printf("====================================================\n");
-				printf("1. Untuk mengakhiri program tekan CTRL +E\n");
-				printf("2. Untuk menyimpan file tekan CTRL +S\n");
-				printf("3. Untuk menuju menu awal tekan CTRL +B\n");
-				printf("4. Untuk membuka panduan tekan CTRL +A\n\n");
-				printf("Tekan apapun untuk kembali\n");
+				help();
 				getch();
 			}
 			// UNTUK KEMBALI KE MENU 
@@ -687,7 +676,7 @@ void editorKeyProses()
 				scanf("%c", &pil);
 				if(pil == 'Y'){
 					system("cls");
-					MenuAwal();
+					Menu();
 				}
 				else{
 					continue;
@@ -697,13 +686,13 @@ void editorKeyProses()
 		}
 		else if (key <= 126)// printing character
 		{
-			InsVChar(&teksEditor, temp, CurrentCollumns, CurrentLine);
-			CurrentCollumns++;
+			InsVChar(&teksEditor, temp, CurColl, CurLine);
+			CurColl++;
 		}
 	}
 }
 
-void refreshScreen(teks L, int line, int collumns)
+void ScrRef(text L, int line, int collumns)
 {	
 	int col;
 	col = 29;
@@ -718,12 +707,11 @@ void refreshScreen(teks L, int line, int collumns)
 	
 	printf("Panduan (Ctrl+A)\n");
 	
-	SetCP(0, col);
+	gotoxy(0, col);
 	printf("Baris : %d | Kolom : %d\n\n", line, collumns);
 	
-	
-	SetCP(0,0);
-	SetCP(0,2);
+	gotoxy(0,0);
+	gotoxy(0,2);
 	while(pos != Nil)
 	{
 		printf("%c", Info(pos));
@@ -738,64 +726,11 @@ void refreshScreen(teks L, int line, int collumns)
 		move = pos;
 			if(pos != Nil)
 				printf("\n");
-	}
-	
-	
+	}	
 }
 
-void refreshTeks_scrolling(teks L, int max_line, int max_collumns)
-{
-	int min_line = max_line - 26;
-	int min_collumns = max_collumns - 121;
-	
-	address pos, move;
-	
-	pos = First(L);
-	move = pos;
-	
-	SetCP(2, 0);
-	
-	if( min_line > 26 )
-	{
-		min_line = min_line - 26;
-	}
-	
-	for(int i = 0; i< min_line - 1; i++)
-		pos = Down(pos);
-	
-	move = pos;
-	
-	if( min_collumns > 121 )
-	{
-		min_collumns = max_collumns - 121;
-	}
-	
-	for(int i = 0; i<26;i++)
-	{
-		
-	}
-	
-}
 
-void refreshBlank(teks L, int min_line)
-{
-	int temp;
-	SetCP(2,0);
-	for(int i = 0; i < 26;i++)
-	{
-		temp = getLength(L, min_line);
-		for(int j = 0; j< temp; j++)
-		{
-			printf(" ");
-		}
-		printf("\n");
-		min_line++;
-	}
-}
-
-//void void refreshTeks_scrolling
-
-int getLength(teks L, int CurLine)
+int infoLenght(text L, int CurLine)
 {
 	address pos = First(L);
 	int count = 1;
@@ -816,15 +751,7 @@ int getLength(teks L, int CurLine)
 	return count;
 }
 
-void SetCP(char x, char y)
-{
-	static const HANDLE hOut = GetStdHandle(STD_OUTPUT_HANDLE);
-	fflush(stdin);
-	COORD coord = { (SHORT)x, (SHORT)y };
-	SetConsoleCursorPosition(hOut, coord);
-}
-
-int getMaxRow(teks L)
+int infoRow(text L)
 {
 	address pos = First(L);
 	int count = 1;
@@ -836,40 +763,38 @@ int getMaxRow(teks L)
 	return count;
 }
 
-void tampilan_awal()
+void welcome()
 {
 	printf("\n\n\n\n\n\n\n\n\t\t\tTEKS EDITOR BY YII2 CORE");
 	printf("\n\n\n\n\n\n\n\n\t\t\tTEKAN APAPUN UNTUK LANJUT");
 	printf("\n\n\n\n\n\n\n\n\n\n\n\n");
-//	system("pause");
-//	help();
 	getch();
 	system("cls");
 }
 
-void editorSaveFile(char *fname, teks L)
+void saveFile(char *fname, text L)
 {
 	address rec, pos;
 	rec = First(L);
 	pos = rec;
 	
-	FILE *fptr = NULL; // pendeklarasian tipe data file
+	FILE *file = NULL; // untuk mendeklarasikan tipe data file
 
-    fptr = fopen(fname, "w+"); // pada variabel fptr kita ingin membuka sebuah file dengan mode w+(overwrite)
+    file = fopen(fname, "w+"); // pada variabel file kita ingin membuka sebuah file dengan mode w+(overwrite)
     
     while(rec != Nil)
     {
     	while(pos != Nil)
     	{
-    		fprintf(fptr, "%c", Info(pos));
+    		fprintf(file, "%c", Info(pos));
     		pos = Next(pos);
 		}
 		rec = Down(rec);
 		pos = rec;
 		if(rec != Nil)
-			fprintf(fptr, "\n");
+			fprintf(file, "\n");
 	}
-	fclose(fptr);
+	fclose(file);
 }
 
 void gotoxy(int x, int y)
@@ -882,7 +807,7 @@ void gotoxy(int x, int y)
 	SetConsoleCursorPosition(hConsoleOutput,dwCursorPosition);
 }
 
-void MenuAwal(){
+void Menu(){
 		
 	
 	int tombol;
@@ -904,7 +829,7 @@ void MenuAwal(){
 	switch(tombol){
 		case 1:
 			system("cls");
-			editorKeyProses();
+			textProses();
 			gotoxy(25,23);
 			printf("Tekan 'ENTER' untuk kembali!");
 			getch();
@@ -912,17 +837,10 @@ void MenuAwal(){
 
 		case 2:
 			system("cls");
-				printf("====================================================\n");
-				printf("=============            HELP           ============\n");
-				printf("====================================================\n");
-				printf("1. Untuk mengakhiri program tekan CTRL +E\n");
-				printf("2. Untuk menyimpan file tekan CTRL +S\n");
-				printf("3. Untuk menuju menu awal tekan CTRL +B\n");
-				printf("4. Untuk membuka panduan tekan CTRL +A\n\n");
-				printf("Tekan apapun untuk kembali\n");
+			help();
 			getch();
 			system("cls");
-			MenuAwal();
+			Menu();
 			break;
 		case 3:
 			exit(1);
@@ -933,4 +851,15 @@ void MenuAwal(){
    			getch();
 
 }
+}
+
+void help(){
+				printf("====================================================\n");
+				printf("=============            HELP           ============\n");
+				printf("====================================================\n");
+				printf("1. Untuk mengakhiri program tekan CTRL +E\n");
+				printf("2. Untuk menyimpan file tekan CTRL +S\n");
+				printf("3. Untuk menuju menu awal tekan CTRL +B\n");
+				printf("4. Untuk membuka panduan tekan CTRL +A\n\n");
+				printf("Tekan apapun untuk kembali\n");
 }

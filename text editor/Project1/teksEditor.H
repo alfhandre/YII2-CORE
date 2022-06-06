@@ -16,57 +16,57 @@
 
 //ARRAY OF LIST ANGGOTA
 typedef char infotype;
-typedef struct tElmtList *address;
+typedef struct tnode *address;
 
-typedef struct tElmtList {
+typedef struct tnode {
 	 infotype info;
 	 address next;
 	 address down;
 	 address up;
 	 address prev;
-} ElmtList;
+} node;
 
 typedef struct {
 	  address First;
-} teks;
+} text;
 
-bool IsEmpty (teks L);
+bool IsEmpty (text L);
 
-void CreateTeks (teks * L);
+void createText (text * L);
 
-address Alokasi (infotype X);
+address Alocation (infotype X);
 
-void DeAlokasi (address *P);
+void deAloc (address *P);
 
-void InsertFirstRow (teks * L, address P);
+void InsNewRow (text * L, address P);
 
-void InsertNewLine(teks * L,int CurLine);
+void InsNewLine(text * L,int CurLine);
 
-void InsertChar (teks * L, address New, int CurCol, int CurLine);
+void InsChar (text * L, address New, int CurCol, int CurLine);
 
-void InsVChar (teks * L, infotype X, int CurLine, int CurCol);
+void InsVChar (text * L, infotype X, int CurLine, int CurCol);
 
-void editorKeyProses();
+void textProses();
 
-void refreshScreen(teks L, int line, int collumns);
+void ScrRef(text L, int line, int collumns);
 
-void DelChar(teks * L, int CurCol, int CurLine);
+void DelChar(text * L, int CurCol, int CurLine);
 
-int getLength(teks L, int CurLine);
+int infoLenght(text L, int CurLine);
 
 void help();
 
-void SetCP(char x, char y);
+void welcome();
 
-void tampilan_awal();
+int infoRow(text L);
 
-int getMaxRow(teks L);
-
-void editorSaveFile(char *fname, teks L);
+void saveFile(char *fname, text L);
 
 void gotoxy(int x, int y);
 
-void MenuAwal();
+void Menu();
+
+void help();
 #endif
 
 
